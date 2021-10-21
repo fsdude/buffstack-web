@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+<!-- 	<constant name="struts.devMode" value="false" /> -->
+	<constant name="struts.multipart.maxSize" value="31457280" /> <!-- TAMANHO MAXIMO PARA UPLOAD 30MB-->
+
+	<package name="default" namespace="/" extends="struts-default, json-default">
+		<interceptors>
+<!-- 			CRIAÇÃO DO INTERCEPTADOR PERSONALIZADO -->
+			<interceptor name="autorizador"
+				class="org.example.interceptor.AutorizadorInterceptador" />
+
+<!-- 			CRIAÇÃO DA PILHA DE INTERCEPTADORES -->
+			<interceptor-stack name="seguranca">
+				<interceptor-ref name="autorizador" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+<!-- 		DEFINIÇÃO DO INTERCEPTADOR PADRÃO -->
+		<default-interceptor-ref name="seguranca" />
+
+		<!-- DEFINIÇÃO DE RESULTADO GLOBAL -->
+		<global-results>
+			<result name="naoLogado">WEB-INF\content\index.jsp</result>
+<!--			<result name="admNaoLogado" type="redirectAction">naoLogado</result>-->
+<!--			<result name="corNaoLogado" type="redirectAction">naoLogado</result>-->
+<!--			<result name="desautorizado">WEB-INF\content\naoAutorizado.jsp</result>-->
+<!--			<result name="desautorizadoModal">WEB-INF\content\naoAutorizadoModal.jsp</result>-->
+		</global-results>
+	</package>
+</struts>

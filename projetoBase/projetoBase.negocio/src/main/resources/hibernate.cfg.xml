@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="connection.url">jdbc:mysql://localhost:3306/mentira</property>
+
+		<property name="connection.verifyServerCertificate">true</property>
+		<property name="connection.useSSL">false</property>
+		<property name="connection.autoReconnect">true</property>
+		<property name="connection.username">fsdude</property>
+		<property name="connection.password">P@ssw0rd</property>
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+		<property name="hibernate.temp.use_jdbc_metadata_defaults">false</property>
+
+<!-- 		<property name="connection.pool_size">2</property>-->
+		<property name="current_session_context_class">thread</property>
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+
+		<property name="hibernate.c3p0.statementCacheNumDeferredCloseThreads">1</property>
+		<property name="hibernate.c3p0.min_size">30</property>
+		<property name="hibernate.c3p0.max_size">500</property>
+		<property name="hibernate.c3p0.acquire_increment">3</property>
+		<property name="hibernate.c3p0.idle_test_period">650</property>
+		<property name="hibernate.c3p0.timeout">1200</property>
+		<property name="hibernate.c3p0.max_statements">10</property>
+
+		<mapping class="org.example.entidade.Bairro" />
+		<mapping class="org.example.entidade.Cidade" />
+		<mapping class="org.example.entidade.Nacao" />
+		<mapping class="org.example.entidade.Objeto" />
+		<mapping class="org.example.entidade.Pessoa" />
+		<mapping class="org.example.entidade.Pessoa_Endereco" />
+		<mapping class="org.example.entidade.Rua" />
+		<mapping class="org.example.entidade.Sequencial" />
+		<mapping class="org.example.entidade.Sexo" />
+		<mapping class="org.example.entidade.Tipo" />
+		<mapping class="org.example.entidade.UF" />
+	</session-factory>
+</hibernate-configuration>

@@ -1,7 +1,9 @@
 package org.example.dao;
 
+import org.bouncycastle.jce.provider.JDKKeyFactory;
 import org.example.entidade.Pessoa;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
@@ -58,5 +60,16 @@ public class PessoaDAO extends DAO<Pessoa> {
 						.add(Projections.property("dataNascimento"), "dataNascimento"))
 				.setResultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP)
 				.list();
+	}
+
+	public void delete(int pessoaId){
+		try {
+			Transaction ts = getSession().beginTransaction();
+			Pessoa pessoa = (Pessoa) getSession().createCriteria(Pessoa.class)
+					.add(Restrictions.eq("id", pessoaId)).uniqueResult();
+			getSession().delete(pessoa);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
 	}
 }

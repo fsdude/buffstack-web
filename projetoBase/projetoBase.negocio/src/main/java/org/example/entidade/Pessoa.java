@@ -66,6 +66,10 @@ public class Pessoa implements Serializable, Comparable<Pessoa> {
         this.dataNascimento = CassUtil.converterDataStringParaCalendar(dataNascimento);
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     public String getCpfFormatado() {
         return CassUtil.mascarar(cpf, "###.###.###-##");
     }

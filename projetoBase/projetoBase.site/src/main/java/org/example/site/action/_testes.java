@@ -18,7 +18,7 @@ public class _testes {
         PessoaDAO pessoaDAO = new PessoaDAO(session);
         Calendar hoje = Calendar.getInstance();
 
-        Pessoa pessoa = new Pessoa("Teste", hoje, "123456789");
+//        Pessoa pessoa = new Pessoa("Teste", hoje, "123456789");
 //        pessoaDAO.salvar(pessoa);
 
 //        List<Pessoa> lista = pessoaDAO.listar();

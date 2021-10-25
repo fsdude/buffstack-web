@@ -19,10 +19,10 @@ public class SalvarPessoaAction {
     private HttpServletResponse response = ServletActionContext.getResponse();
 
     private Pessoa pessoaBean;
-    private List<Pessoa> pessoaList;
+    private List<Pessoa> pessoaList = new ArrayList();
 
     @Action(value = "salvarPessoa", results = {
-            @Result(name = "ok", location = "index.jsp", type = "redirectAction"),
+            @Result(name = "ok", location = "index.jsp"),
             @Result(name = "erro", type = "httpheader", params = {"status", "409"})
     })
     public String execute() {
@@ -32,14 +32,12 @@ public class SalvarPessoaAction {
             PessoaDAO pessoaDAO = new PessoaDAO(session);
             Pessoa pessoa = new Pessoa(pessoaBean.getId(), pessoaBean.getNome(), pessoaBean.getCpf());
 
-            System.out.println("entrei na PessoaAction");
+            System.out.println("entrei em SalvarPessoa");
             System.out.println(pessoa);
 
             pessoaDAO.salvar(pessoa);
             System.out.println(pessoaDAO.listar());
-
-            setPessoaList(pessoaDAO.listar());
-            System.out.println(pessoaList.size());
+            pessoaList.addAll(pessoaDAO.listar());
 
             return "ok";
 
@@ -78,7 +76,7 @@ public class SalvarPessoaAction {
         return pessoaList;
     }
 
-    public void setPessoaList(List<Pessoa> pessoaList) {
-        this.pessoaList = pessoaList;
-    }
+//    public void setPessoaList(List<Pessoa> pessoaList) {
+//        this.pessoaList = pessoaList;
+//    }
 }

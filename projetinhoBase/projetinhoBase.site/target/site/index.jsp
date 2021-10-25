@@ -14,7 +14,7 @@
     <s:submit/>
 </s:form>
 
-<s:if test="pessoaList.size() > 0">
+<s:if test="!getPessoaList().isEmpty()">
     <div class="content">
         <table class="userTable" cellpadding="5px">
             <tr class="even">

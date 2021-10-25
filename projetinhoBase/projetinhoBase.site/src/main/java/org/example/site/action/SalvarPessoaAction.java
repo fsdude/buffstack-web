@@ -19,6 +19,7 @@ public class SalvarPessoaAction {
     private HttpServletResponse response = ServletActionContext.getResponse();
 
     private Pessoa pessoaBean;
+    private List<Pessoa> pessoaList;
 
     @Action(value = "salvarPessoa", results = {
             @Result(name = "ok", location = "index.jsp", type = "redirectAction"),
@@ -35,7 +36,10 @@ public class SalvarPessoaAction {
             System.out.println(pessoa);
 
             pessoaDAO.salvar(pessoa);
-            pessoaDAO.listar();
+            System.out.println(pessoaDAO.listar());
+
+            setPessoaList(pessoaDAO.listar());
+            System.out.println(pessoaList.size());
 
             return "ok";
 
@@ -68,5 +72,13 @@ public class SalvarPessoaAction {
 
     public void setPessoaBean(Pessoa pessoaBean) {
         this.pessoaBean = pessoaBean;
+    }
+
+    public List<Pessoa> getPessoaList() {
+        return pessoaList;
+    }
+
+    public void setPessoaList(List<Pessoa> pessoaList) {
+        this.pessoaList = pessoaList;
     }
 }
